@@ -135,7 +135,7 @@ void Solution :: selectRightContours(vector<vector<Point>> &contours, vector<vec
         RotatedRect rec = minAreaRect(contours[i]); //最小外接矩阵拟合
         //采用最小外接矩阵拟合比椭圆拟合效果要好，因为有的装甲板两条灯条亮度不一样，用椭圆拟合出来的矩形亮的比暗的大很多
 
-        cout << "rec_angle " << rec.angle << endl;
+        // cout << "rec_angle " << rec.angle << endl;
         float angle = abs(rec.angle);
         if (angle > 45){
             angle = 90 - angle;
