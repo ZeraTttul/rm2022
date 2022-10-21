@@ -4,11 +4,19 @@
           "name": "win",
           "includePath": [
               "${workspaceFolder}/**",
+<<<<<<< HEAD
               "F:\\Opencv\\opencv-4.5.4\\build\\include",
               "F:\\Opencv\\opencv-4.5.4\\build\\include\\opencv2"
           ],
           "defines": [],
           "compilerPath": "F:\\MinGW\\mingw64\\bin\\gcc.exe",
+=======
+              "D:\\OpenCV\\opencv\\build\\include",
+              "D:\\OpenCV\\opencv\\build\\include\\opencv2"                
+          ],
+          "defines": [],
+          "compilerPath": "D:/MinGW/bin/gcc.exe",
+>>>>>>> bef8c8c (10.21 test)
           "cStandard": "c11",
           "cppStandard": "c++17",
           "intelliSenseMode": "clang-x64"

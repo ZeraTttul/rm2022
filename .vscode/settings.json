@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "ostream": "cpp",
+<<<<<<< HEAD
         "*.tcc": "cpp",
         "array": "cpp",
         "atomic": "cpp",
@@ -54,5 +55,8 @@
         "thread": "cpp",
         "typeinfo": "cpp",
         "queue": "cpp"
+=======
+        "*.tcc": "cpp"
+>>>>>>> bef8c8c (10.21 test)
     }
 }

@@ -29,6 +29,7 @@ int main () {
 
     Solution solve;
     solve.sol();
+    //
 
     /*******equalhist test***********/
     // Rgb rgb;

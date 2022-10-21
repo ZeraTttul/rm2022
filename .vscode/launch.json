@@ -9,14 +9,22 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
+<<<<<<< HEAD
             "program": "${workspaceFolder}/obj/${fileBasenameNoExtension}.o",
+=======
+            "program": "${workspaceFolder}/${fileBasenameNoExtension}.o",
+>>>>>>> bef8c8c (10.21 test)
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": true,
             "MIMode": "gdb",
+<<<<<<< HEAD
             "miDebuggerPath": "F:\\MinGW\\mingw64\\bin\\gdb.exe",
+=======
+            "miDebuggerPath": "D:/MinGW/bin/gdb.exe",
+>>>>>>> bef8c8c (10.21 test)
             "preLaunchTask": "g++",
             "setupCommands": [
                 {
