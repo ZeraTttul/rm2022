@@ -26,7 +26,11 @@ private:
         int grayThreshold_RED = 40;                            //灰度二值化阈值-红色
         int grayThreshold_BLUE = 50;                            //灰度二值化阈值-蓝色
         int separationThreshold_RED = 50;                    //色彩分离二值化阈值-红色
+<<<<<<< HEAD
         int separationThreshold_BLUE = 70;                    //色彩分离二值化阈值-蓝色
+=======
+        int separationThreshold_BLUE = 90;                    //色彩分离二值化阈值-蓝色
+>>>>>>> bef8c8c906c207319740c4f400c857de90997db8
         float imageBright_RED = -80;                         //亮度削减-红色
         float imageBright_BLUE = -50;                         //亮度削减-蓝色
     };
@@ -73,5 +77,9 @@ public:
      */
 
     Mat imagePreprocess(const cv::Mat &src, bool flag);
+<<<<<<< HEAD
     Mat GetHist(Mat& image);
+=======
+    Mat EqualHist(Mat image);
+>>>>>>> bef8c8c906c207319740c4f400c857de90997db8
 };
