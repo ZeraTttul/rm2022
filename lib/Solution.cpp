@@ -9,7 +9,6 @@
 
 void Solution :: sol() {
     //定义KalmanFilter类并初始化
-    kalman k;
     KalmanFilter KK(k.stateNum,k.measureNum,0);
     k.KF=KK;
     //定义测量值
