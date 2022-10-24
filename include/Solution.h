@@ -19,6 +19,7 @@
 #include <cstring>
 #include <cstdio>
 #include "SolvePnP.h"
+#include "Kalman.h"
 #include "rgb.h"
 
 //#define NX
@@ -63,6 +64,7 @@ public:
     void selectRightContours(vector<vector<Point>> &contours,
                              vector<vector<Point>> &select_contours);
     void chooseNearest();
+    kalman k;
 };
 
 #endif //RM2022_SOLUTION_H
