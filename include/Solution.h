@@ -19,6 +19,7 @@
 #include <cstring>
 #include <cstdio>
 #include "SolvePnP.h"
+#include "Kalman.h"
 #include "rgb.h"
 
 //#define NX
@@ -26,7 +27,7 @@
 #define BLUE
 #define IMSHOW //提高效率可以把这两个注释掉
 //#define CLOCK
-//#define PREDICT 10.12 卡尔曼不可用
+#define PREDICT 10.12 卡尔曼不可用 10.24:卡尔曼可用
 
 #ifdef NX
 #include "serial.h"
@@ -63,6 +64,7 @@ public:
     void selectRightContours(vector<vector<Point>> &contours,
                              vector<vector<Point>> &select_contours);
     void chooseNearest();
+    kalman k;
 };
 
 #endif //RM2022_SOLUTION_H

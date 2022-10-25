@@ -9,28 +9,26 @@
 
 void Solution :: sol() {
     //定义KalmanFilter类并初始化
-    KalmanFilter KF(stateNum,
-                    measureNum,
-                    0);
-
-    //state(x,y)
-    // Mat processNoise(stateNum, 1, CV_32F);
-
+    KalmanFilter KK(k.stateNum,k.measureNum,0);
+    k.KF=KK;
     //定义测量值
-    measurement = Mat::zeros(measureNum,
+    k.measurement = Mat::zeros(k.measureNum,
                                  1,
                                  CV_32F);
+                      
 
     //转移矩阵 A
-    KF.transitionMatrix = (Mat_<float>(stateNum,
-                                       stateNum) <<
+    k.KF.transitionMatrix = (Mat_<float>(k.stateNum,
+                                       k.stateNum) <<
             1, 0, 1, 0,
             0, 1, 0, 1,
             0, 0, 1, 0,
             0, 0, 0, 1);
 
-    // 1.初始化
-        init(KF);
+  
+  
+   // 1.初始化
+        k.init(k.KF);
 #ifdef NX
 	HikCamera MVS_cap; // 初始化相机
     MVS_cap.CamInfoShow(); // 显示图像参数信息
@@ -349,20 +347,9 @@ void Solution ::chooseNearest() {
         }
 
 #ifdef PREDICT
-        //2.预测
-        
-            Mat prediction = KF.predict();//计算预测值，返回x
-            Point predict_pt = Point((int)prediction.at<float>(0), (int)prediction.at<float>(1));
 
-            measurement.at<float>(0) = (float)center_x;
-            measurement.at<float>(1) = (float)center_y;
-            KF.correct(measurement);
-
-            circle(binary, predict_pt, 3, Scalar(34, 255, 255), -1);
-
-            //卡尔曼预测的结果
-            center_x = (double)prediction.at<float>(0);
-            center_y = (double)prediction.at<float>(1);
+        Point predict_pt = k.kal((float)center_x,(float)center_y);
+        circle(binary, predict_pt, 3, Scalar(34, 255, 255), -1);
 
 #endif
 
