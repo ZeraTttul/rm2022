@@ -26,10 +26,10 @@ Point kalman::kal(float x,float y)
 	measurement.at<float>(1) = y;		
     for(int i=1;i<=5;i++)
          {
-                KF.correct(measurement);
-                prediction = KF.predict();
-                measurement.at<float>(0) = prediction.at<float>(0);
-		        measurement.at<float>(1) = prediction.at<float>(1); 
+            KF.correct(measurement);
+            prediction = KF.predict();
+            measurement.at<float>(0) = prediction.at<float>(0);
+		    measurement.at<float>(1) = prediction.at<float>(1);
         }
         center.x=prediction.at<float>(0);
         center.y=prediction.at<float>(1);

@@ -9,6 +9,7 @@
 
 void Solution :: sol() {
     //定义KalmanFilter类并初始化
+#ifdef PREDICT
     KalmanFilter KK(k.stateNum,k.measureNum,0);
     k.KF=KK;
     //定义测量值
@@ -29,6 +30,8 @@ void Solution :: sol() {
   
    // 1.初始化
         k.init(k.KF);
+#endif
+
 #ifdef NX
 	HikCamera MVS_cap; // 初始化相机
     MVS_cap.CamInfoShow(); // 显示图像参数信息
@@ -37,7 +40,7 @@ void Solution :: sol() {
         continue;
     }
 #endif 
-    VideoCapture cap ("E:\\VSCode\\production\\Rgb\\Video\\blueVideo3.mp4");
+    // VideoCapture cap ("E:\\VSCode\\production\\Rgb\\Video\\blueVideo3.mp4");
 
     while (true) {
         //再次确保不会爆数组
@@ -47,10 +50,10 @@ void Solution :: sol() {
         start = clock();
 #endif
 
-        // frame = imread("E:/VSCode/Picture/blue7.jpg");
+        frame = imread("E:/VSCode/Picture/red4.jpg");
 
-        cap.read(frame1);
-	    resize(frame1,frame,frame.size(),0.5,0.5);
+        // cap.read(frame1);
+	    // resize(frame1,frame,frame.size(),0.5,0.5);
         frame.copyTo(binary);//展示效果
         frame.copyTo(frame1);
 
@@ -313,8 +316,10 @@ void Solution ::chooseNearest() {
                    (R[mark].center.y + RA[mark].center.y) / 2),
                    15, cv::Scalar(0, 0, 255), 4);
 
-        double center_x = (R[mark].center.x + RA[mark].center.x) / 2;
-        double center_y = (R[mark].center.y + RA[mark].center.y) / 2;
+        double center_x = -1;
+        double center_y = -1;
+        center_x = (R[mark].center.x + RA[mark].center.x) / 2;
+        center_y = (R[mark].center.y + RA[mark].center.y) / 2;
 
         Point2f verticesR[4];
         R[mark].points(verticesR);
@@ -345,9 +350,11 @@ void Solution ::chooseNearest() {
             x3 = (verticesRA[0].x + verticesRA[3].x) / 2;
             y3 = (verticesRA[0].y + verticesRA[3].y) / 2;
         }
+        if(center_x < 0) cout << "1 "<<endl;
+        // cout << "center " << center_x << endl;
 
 #ifdef PREDICT
-
+        if()
         Point predict_pt = k.kal((float)center_x,(float)center_y);
         circle(binary, predict_pt, 3, Scalar(34, 255, 255), -1);
 
