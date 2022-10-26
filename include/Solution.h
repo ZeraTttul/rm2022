@@ -27,7 +27,7 @@
 #define BLUE
 #define IMSHOW //提高效率可以把这两个注释掉
 //#define CLOCK
-#define PREDICT 10.12 卡尔曼不可用 10.24:卡尔曼可用
+//#define PREDICT 10.12 卡尔曼不可用 10.24:卡尔曼可用
 
 #ifdef NX
 #include "serial.h"
