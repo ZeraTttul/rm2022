@@ -316,8 +316,10 @@ void Solution ::chooseNearest() {
                    (R[mark].center.y + RA[mark].center.y) / 2),
                    15, cv::Scalar(0, 0, 255), 4);
 
-        double center_x = (R[mark].center.x + RA[mark].center.x) / 2;
-        double center_y = (R[mark].center.y + RA[mark].center.y) / 2;
+        double center_x = -1;
+        double center_y = -1;
+        center_x = (R[mark].center.x + RA[mark].center.x) / 2;
+        center_y = (R[mark].center.y + RA[mark].center.y) / 2;
 
         Point2f verticesR[4];
         R[mark].points(verticesR);
@@ -348,10 +350,11 @@ void Solution ::chooseNearest() {
             x3 = (verticesRA[0].x + verticesRA[3].x) / 2;
             y3 = (verticesRA[0].y + verticesRA[3].y) / 2;
         }
-        // if(center_x == NULL) cout << "1 "<<endl;
+        if(center_x < 0) cout << "1 "<<endl;
         // cout << "center " << center_x << endl;
 
 #ifdef PREDICT
+        if()
         Point predict_pt = k.kal((float)center_x,(float)center_y);
         circle(binary, predict_pt, 3, Scalar(34, 255, 255), -1);
 
