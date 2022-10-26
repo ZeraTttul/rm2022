@@ -27,30 +27,6 @@ int main () {
     VideoCapture capture(0);
     #endif
 
-<<<<<<< HEAD
-    // Solution solve;
-    // solve.sol();
-
-    /*******test***********/
-    Rgb rgb;
-    Mat img = imread("E:/VSCode/Picture/blue7.jpg");
-    cvtColor(img, img, COLOR_BGR2GRAY);
-    Mat hist;
-    Mat _hist;
-    Mat equalImg;
-    imshow("img", img);
-    equalizeHist(img, equalImg);
-    imshow("equalImg", equalImg);
-    const int channels[] = {0};
-    int dims = 1;
-    int histSize[] = {256};
-    float granges[] = {0, 255};
-    const float *ranges[] = {granges};
-    calcHist(&equalImg, 1, channels, Mat(), hist, dims, histSize, ranges);
-    //equalizeHist(hist, _hist);
-    imshow("hist", equalImg);
-    waitKey(0);
-=======
     Solution solve;
     solve.sol();
     //
@@ -72,7 +48,6 @@ int main () {
     // calcHist(&equalImg, 1, channels, Mat(), hist, dims, histSize, ranges);
     //equalizeHist(hist, _hist);
     // waitKey(0);
->>>>>>> bef8c8c906c207319740c4f400c857de90997db8
 
     return 0;
 }
