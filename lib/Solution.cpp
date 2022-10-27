@@ -40,7 +40,7 @@ void Solution :: sol() {
         continue;
     }
 #endif 
-    // VideoCapture cap ("E:\\VSCode\\production\\Rgb\\Video\\blueVideo3.mp4");
+    VideoCapture cap ("E:\\VSCode\\production\\Rgb\\Video\\blueVideo3.mp4");
 
     while (true) {
         //再次确保不会爆数组
@@ -50,10 +50,10 @@ void Solution :: sol() {
         start = clock();
 #endif
 
-        frame = imread("E:/VSCode/Picture/red4.jpg");
+        // frame = imread("E:/VSCode/Picture/red4.jpg");
 
-        // cap.read(frame1);
-	    // resize(frame1,frame,frame.size(),0.5,0.5);
+        cap.read(frame1);
+	    resize(frame1,frame,frame.size(),0.5,0.5);
         frame.copyTo(binary);//展示效果
         frame.copyTo(frame1);
 
