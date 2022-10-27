@@ -49,6 +49,8 @@ private:
     Mat frame, binary, frame1;
     RotatedRect Select_contours[32];
     RotatedRect RA[32], R[32];
+    float x1, y1, x2, y2, x3, y3, x4, y4;
+    float center_x, center_y;
 
     int stateNum = 4;                          //状态值4×1向量(x,y,△x,△y)
     int measureNum = 2;                        //测量值2×1向量(x,y)

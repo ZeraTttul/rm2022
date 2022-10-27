@@ -40,7 +40,7 @@ void Solution :: sol() {
         continue;
     }
 #endif 
-    VideoCapture cap ("E:\\VSCode\\production\\Rgb\\Video\\blueVideo3.mp4");
+    // VideoCapture cap ("E:\\VSCode\\production\\Rgb\\Video\\blueVideo3.mp4");
 
     while (true) {
         //再次确保不会爆数组
@@ -50,10 +50,10 @@ void Solution :: sol() {
         start = clock();
 #endif
 
-        // frame = imread("E:/VSCode/Picture/red4.jpg");
+        frame = imread("E:/VSCode/Picture/red4.jpg");
 
-        cap.read(frame1);
-	    resize(frame1,frame,frame.size(),0.5,0.5);
+        // cap.read(frame1);
+	    // resize(frame1,frame,frame.size(),0.5,0.5);
         frame.copyTo(binary);//展示效果
         frame.copyTo(frame1);
 
@@ -310,22 +310,22 @@ void Solution ::chooseNearest() {
         }
     }
 
-    if (hi != 0) {
+    if (hi != 0) 
+    {
         cv::circle(binary,
                    Point((R[mark].center.x + RA[mark].center.x) / 2,
                    (R[mark].center.y + RA[mark].center.y) / 2),
                    15, cv::Scalar(0, 0, 255), 4);
 
-        double center_x = -1;
-        double center_y = -1;
-        center_x = (R[mark].center.x + RA[mark].center.x) / 2;
+        double center_x = (R[mark].center.x + RA[mark].center.x) / 2;
+        double center_y = (R[mark].center.y + RA[mark].center.y) / 2;
+        
         center_y = (R[mark].center.y + RA[mark].center.y) / 2;
 
         Point2f verticesR[4];
         R[mark].points(verticesR);
         Point2f verticesRA[4];
         RA[mark].points(verticesRA);
-        float x1, y1, x2, y2, x3, y3, x4, y4;
 
         if (abs(R[mark].angle) > 45) {
             x1 = (verticesR[2].x + verticesR[3].x) / 2;
@@ -350,14 +350,14 @@ void Solution ::chooseNearest() {
             x3 = (verticesRA[0].x + verticesRA[3].x) / 2;
             y3 = (verticesRA[0].y + verticesRA[3].y) / 2;
         }
-        // if(center_x < 0) cout << "1 "<<endl;
-        // cout << "center " << center_x << endl;
+    }
 
 #ifdef PREDICT
         queue<Point2f> que;
         float pointx, pointy;
-        if(center_x < 0 || center_y < 0)    
+        if(hi == 0)    
         {
+            cout << "1111111111111111111111111111 " <<endl;
             if(!que.empty())
             {
                 que.front().x = pointx;
@@ -383,16 +383,18 @@ void Solution ::chooseNearest() {
 #endif
 
 #ifdef IMSHOW
-        vector<cv::Point2f> imagePoints;
-        imagePoints.push_back(Point2f(x1, y1));
-        imagePoints.push_back(Point2f(x2, y2));
-        imagePoints.push_back(Point2f(x3, y3));
-        imagePoints.push_back(Point2f(x4, y4));
+        // vector<cv::Point2f> imagePoints;
+        // imagePoints.push_back(Point2f(x1, y1));
+        // imagePoints.push_back(Point2f(x2, y2));
+        // imagePoints.push_back(Point2f(x3, y3));
+        // imagePoints.push_back(Point2f(x4, y4));
 
        // for (int n = 0; n < imagePoints.size(); n++) {
          //   circle(binary, imagePoints[n], 3, Scalar(255, 0, 0), -1, 8);
         //}
 #endif
+    if(hi != 0)
+    {
         float boardw_up = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
         float boardw_down = sqrt((x3 - x4) * (x3 - x4) + (y3 - y4) * (y3 - y4));
         float boardw = (boardw_up + boardw_down) / 2;
