@@ -350,7 +350,7 @@ void Solution ::chooseNearest() {
             x3 = (verticesRA[0].x + verticesRA[3].x) / 2;
             y3 = (verticesRA[0].y + verticesRA[3].y) / 2;
         }
-        if(center_x < 0) cout << "1 "<<endl;
+        // if(center_x < 0) cout << "1 "<<endl;
         // cout << "center " << center_x << endl;
 
 #ifdef PREDICT
