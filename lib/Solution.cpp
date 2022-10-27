@@ -40,7 +40,7 @@ void Solution :: sol() {
         continue;
     }
 #endif 
-    // VideoCapture cap ("E:\\VSCode\\production\\Rgb\\Video\\blueVideo3.mp4");
+    VideoCapture cap ("Video/blueVideo2.mp4");
 
     while (true) {
         //再次确保不会爆数组
@@ -50,10 +50,10 @@ void Solution :: sol() {
         start = clock();
 #endif
 
-        frame = imread("E:/VSCode/Picture/red4.jpg");
+        // frame = imread("E:/VSCode/Picture/red4.jpg");
 
-        // cap.read(frame1);
-	    // resize(frame1,frame,frame.size(),0.5,0.5);
+        cap.read(frame1);
+	    resize(frame1,frame,frame.size(),0.5,0.5);
         frame.copyTo(binary);//展示效果
         frame.copyTo(frame1);
 
@@ -135,7 +135,7 @@ void Solution :: selectRightContours(vector<vector<Point>> &contours, vector<vec
         RotatedRect rec = minAreaRect(contours[i]); //最小外接矩阵拟合
         //采用最小外接矩阵拟合比椭圆拟合效果要好，因为有的装甲板两条灯条亮度不一样，用椭圆拟合出来的矩形亮的比暗的大很多
 
-        cout << "rec_angle " << rec.angle << endl;
+        // cout << "rec_angle " << rec.angle << endl;
         float angle = abs(rec.angle);
         if (angle > 45){
             angle = 90 - angle;
@@ -311,6 +311,7 @@ void Solution ::chooseNearest() {
     }
 
     if (hi != 0) {
+        //circle the center 
         cv::circle(binary,
                    Point((R[mark].center.x + RA[mark].center.x) / 2,
                    (R[mark].center.y + RA[mark].center.y) / 2),
@@ -350,26 +351,26 @@ void Solution ::chooseNearest() {
             x3 = (verticesRA[0].x + verticesRA[3].x) / 2;
             y3 = (verticesRA[0].y + verticesRA[3].y) / 2;
         }
-        if(center_x < 0) cout << "1 "<<endl;
+        // if(center_x < 0) cout << "1 "<<endl;
         // cout << "center " << center_x << endl;
 
 #ifdef PREDICT
-        if()
+        
         Point predict_pt = k.kal((float)center_x,(float)center_y);
         circle(binary, predict_pt, 3, Scalar(34, 255, 255), -1);
 
 #endif
 
 #ifdef IMSHOW
-        vector<cv::Point2f> imagePoints;
-        imagePoints.push_back(Point2f(x1, y1));
-        imagePoints.push_back(Point2f(x2, y2));
-        imagePoints.push_back(Point2f(x3, y3));
-        imagePoints.push_back(Point2f(x4, y4));
+    //     vector<cv::Point2f> imagePoints;
+    //     imagePoints.push_back(Point2f(x1, y1));
+    //     imagePoints.push_back(Point2f(x2, y2));
+    //     imagePoints.push_back(Point2f(x3, y3));
+    //     imagePoints.push_back(Point2f(x4, y4));
 
-       // for (int n = 0; n < imagePoints.size(); n++) {
-         //   circle(binary, imagePoints[n], 3, Scalar(255, 0, 0), -1, 8);
-        //}
+    //    for (int n = 0; n < imagePoints.size(); n++) {
+    //        circle(binary, imagePoints[n], 3, Scalar(255, 0, 0), -1, 8);
+    //     }
 #endif
         float boardw_up = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
         float boardw_down = sqrt((x3 - x4) * (x3 - x4) + (y3 - y4) * (y3 - y4));
@@ -393,7 +394,7 @@ void Solution ::chooseNearest() {
         //判断是大装甲板还是小装甲板
         if (board_ratio < 4) {
             //小装甲板            
-            cout<<"small "<<endl;
+            // std::cout <<"small "<<endl;
             xishu = (13.5 / boardw + 5.4 / boardh) / 2;
                 //世界坐标
             tmp = pnp.PNP(0);
@@ -401,7 +402,7 @@ void Solution ::chooseNearest() {
 
         } else {
             //大装甲板
-            cout<<"big "<<endl;
+            // std::cout <<"big "<<endl;
             xishu = (23.5 / boardw + 5.4 / boardh) / 2;
             tmp = pnp.PNP(1);
             if(tmp > 10) final_distance = tmp;
@@ -415,7 +416,7 @@ void Solution ::chooseNearest() {
 
         double final_angle_x = angle_x / CV_PI * 180;
         double final_angle_y = angle_y / CV_PI * 180;
-        cout << "final_distance  " << final_distance <<endl;
+        std::cout << "final_distance  " << final_distance <<endl;
 #ifdef NX
         if(tmp > 10)
             uart.sSendData(final_angle_x, final_angle_y,final_distance,1);

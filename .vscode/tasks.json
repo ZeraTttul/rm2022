@@ -12,18 +12,18 @@
         "-I", "F:\\Opencv\\opencv-4.5.4\\build\\include",
         "-I", "F:\\Opencv\\opencv-4.5.4\\build\\include\\opencv2",
         "-L", "F:\\Opencv\\opencv-4.5.4\\build\\x64\\MinGW\\lib",
-        "-l", "opencv_core455",
-        "-l", "opencv_imgproc455",
-        "-l", "opencv_imgcodecs455",
-        "-l", "opencv_video455",
-        "-l", "opencv_ml455",
-        "-l", "opencv_highgui455",
-        "-l", "opencv_objdetect455",
-        "-l", "opencv_flann455",
-        "-l", "opencv_imgcodecs455",
-        "-l", "opencv_photo455",
-        "-l", "opencv_videoio455",
-        "-l", "opencv_calib3d455"
+        "-l", "opencv_core454",
+        "-l", "opencv_imgproc454",
+        "-l", "opencv_imgcodecs454",
+        "-l", "opencv_video454",
+        "-l", "opencv_ml454",
+        "-l", "opencv_highgui454",
+        "-l", "opencv_objdetect454",
+        "-l", "opencv_flann454",
+        "-l", "opencv_imgcodecs454",
+        "-l", "opencv_photo454",
+        "-l", "opencv_videoio454",
+        "-l", "opencv_calib3d454"
   
     ],// 编译命令参数
     "problemMatcher":{

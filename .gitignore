@@ -1,0 +1,6 @@
+.vscode
+Solution.o
+tasks.o
+mat.o
+rgb.o
+solvepnp.o
