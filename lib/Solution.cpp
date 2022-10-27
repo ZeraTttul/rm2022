@@ -40,7 +40,7 @@ void Solution :: sol() {
         continue;
     }
 #endif 
-    // VideoCapture cap ("E:\\VSCode\\production\\Rgb\\Video\\blueVideo3.mp4");
+    VideoCapture cap ("E:\\VSCode\\production\\Rgb\\Video\\blueVideo3.mp4");
 
     while (true) {
         //再次确保不会爆数组
@@ -50,10 +50,10 @@ void Solution :: sol() {
         start = clock();
 #endif
 
-        frame = imread("E:/VSCode/Picture/red4.jpg");
+        // frame = imread("E:/VSCode/Picture/red4.jpg");
 
-        // cap.read(frame1);
-	    // resize(frame1,frame,frame.size(),0.5,0.5);
+        cap.read(frame1);
+	    resize(frame1,frame,frame.size(),0.5,0.5);
         frame.copyTo(binary);//展示效果
         frame.copyTo(frame1);
 
@@ -354,9 +354,31 @@ void Solution ::chooseNearest() {
         // cout << "center " << center_x << endl;
 
 #ifdef PREDICT
-        if()
-        Point predict_pt = k.kal((float)center_x,(float)center_y);
-        circle(binary, predict_pt, 3, Scalar(34, 255, 255), -1);
+        queue<Point2f> que;
+        float pointx, pointy;
+        if(center_x < 0 || center_y < 0)    
+        {
+            if(!que.empty())
+            {
+                que.front().x = pointx;
+                que.front().y = pointy;
+                cv::circle(binary,
+                        Point(pointx, pointy),
+                        3, cv::Scalar(255, 0, 0), 4);
+                que.push(k.kal(pointx, pointy));
+                que.pop();
+            }
+        }
+        else
+        {
+            while(!que.empty()) que.pop();
+            Point2f predict_pt = k.kal((float)center_x,(float)center_y);
+            que.push(predict_pt);
+            circle(binary, predict_pt, 3, Scalar(34, 255, 255), -1);
+        }
+
+        if(que.size() > 4) que.pop();
+
 
 #endif
 
@@ -393,7 +415,7 @@ void Solution ::chooseNearest() {
         //判断是大装甲板还是小装甲板
         if (board_ratio < 4) {
             //小装甲板            
-            cout<<"small "<<endl;
+            // cout<<"small "<<endl;
             xishu = (13.5 / boardw + 5.4 / boardh) / 2;
                 //世界坐标
             tmp = pnp.PNP(0);
@@ -401,7 +423,7 @@ void Solution ::chooseNearest() {
 
         } else {
             //大装甲板
-            cout<<"big "<<endl;
+            // cout<<"big "<<endl;
             xishu = (23.5 / boardw + 5.4 / boardh) / 2;
             tmp = pnp.PNP(1);
             if(tmp > 10) final_distance = tmp;

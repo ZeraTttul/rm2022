@@ -18,9 +18,9 @@ void kalman :: init(KalmanFilter KF) {
     randn(KF.statePost, Scalar::all(0), Scalar::all(0.1)); //x(0)初始化
 }
 
-Point kalman::kal(float x,float y)
+Point2f kalman::kal(float x,float y)
 {
-    Point center;   
+    Point2f center;   
     prediction = KF.predict();
     measurement.at<float>(0) = x;
 	measurement.at<float>(1) = y;		
