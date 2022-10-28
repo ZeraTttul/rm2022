@@ -41,6 +41,7 @@ void Solution :: sol() {
     }
 #endif 
     // VideoCapture cap ("E:\\VSCode\\production\\Rgb\\Video\\blueVideo3.mp4");
+    VideoCapture cap (2);
 
     while (true) {
         //再次确保不会爆数组
@@ -50,12 +51,12 @@ void Solution :: sol() {
         start = clock();
 #endif
 
-        frame = imread("E:/VSCode/Picture/red4.jpg");
+        // frame = imread("E:/VSCode/Picture/red4.jpg");
 
-        // cap.read(frame1);
-	    // resize(frame1,frame,frame.size(),0.5,0.5);
+        cap.read(frame1);
+	    resize(frame1,frame,frame.size(),0.5,0.5);
         frame.copyTo(binary);//展示效果
-        frame.copyTo(frame1);
+        frame.copyTo(frame1);   
 
         Rgb rgb;
 
@@ -303,6 +304,8 @@ void Solution ::chooseNearest() {
 #endif
     double maxh = 0;
     int mark;
+    double center_x = 0;
+    double center_y = 0;
     for (int i = 0; i < hi; i++) {
         if (heights[i] >= maxh) {
             maxh = heights[i];
@@ -317,8 +320,8 @@ void Solution ::chooseNearest() {
                    (R[mark].center.y + RA[mark].center.y) / 2),
                    15, cv::Scalar(0, 0, 255), 4);
 
-        double center_x = (R[mark].center.x + RA[mark].center.x) / 2;
-        double center_y = (R[mark].center.y + RA[mark].center.y) / 2;
+        center_x = (R[mark].center.x + RA[mark].center.x) / 2;
+        center_y = (R[mark].center.y + RA[mark].center.y) / 2;
         
         center_y = (R[mark].center.y + RA[mark].center.y) / 2;
 
@@ -353,32 +356,49 @@ void Solution ::chooseNearest() {
     }
 
 #ifdef PREDICT
-        queue<Point2f> que;
         float pointx, pointy;
         if(hi == 0)    
         {
-            cout << "1111111111111111111111111111 " <<endl;
+            // cout << "1111111111111111111111111111 " <<endl;
+            // while(!que.empty())
+            // {
+            //     cout << "que.front = " << que.front();
+            //     que.pop();
+            // }
             if(!que.empty())
             {
-                que.front().x = pointx;
-                que.front().y = pointy;
+                // cout << "22222222222222222222222222222" << endl;
+                pointx = que.front().x;
+                pointy = que.front().y;
                 cv::circle(binary,
                         Point(pointx, pointy),
-                        3, cv::Scalar(255, 0, 0), 4);
+                        3, cv::Scalar(0, 0, 255), -1);
                 que.push(k.kal(pointx, pointy));
+                
+                // cout << "que.size = " << que.size() << endl;
                 que.pop();
             }
         }
-        else
+        else 
         {
+            //cout << "33333333333333333333333" << endl;
             while(!que.empty()) que.pop();
+            // cout << "centerx = " << center_x << " centery = " << center_y << endl;
             Point2f predict_pt = k.kal((float)center_x,(float)center_y);
+            // cout << "predict_dt = " << predict_pt <<endl;
             que.push(predict_pt);
-            circle(binary, predict_pt, 3, Scalar(34, 255, 255), -1);
+            // cout << "quefront = " << que.front() << endl;
+            circle(binary, 
+                predict_pt, 
+                3, Scalar(34, 255, 255), -1);
         }
+        // cout << "que.size = " << que.size() << endl;
+        if(que.size() > 2) que.pop();
 
-        if(que.size() > 4) que.pop();
-
+            // cout << "centerx = " << center_x << " centery = " << center_y << endl;
+            // Point predict_pt = k.kal((float)center_x,(float)center_y);
+            // cout << "predict_dt = " << predict_pt <<endl;
+            // circle(binary, (Point)predict_pt, 3, Scalar(34, 255, 255), -1);
 
 #endif
 
