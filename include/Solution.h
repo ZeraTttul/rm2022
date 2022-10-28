@@ -59,6 +59,7 @@ private:
     
     float xishu;
     const double P = 3.1415926;
+    queue<Point> que;
 
 public:
     void sol();
