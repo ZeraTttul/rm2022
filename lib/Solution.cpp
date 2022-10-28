@@ -367,7 +367,6 @@ void Solution ::chooseNearest() {
             // }
             if(!que.empty())
             {
-                // cout << "22222222222222222222222222222" << endl;
                 pointx = que.front().x;
                 pointy = que.front().y;
                 cv::circle(binary,
@@ -381,7 +380,6 @@ void Solution ::chooseNearest() {
         }
         else 
         {
-            //cout << "33333333333333333333333" << endl;
             while(!que.empty()) que.pop();
             // cout << "centerx = " << center_x << " centery = " << center_y << endl;
             Point2f predict_pt = k.kal((float)center_x,(float)center_y);
