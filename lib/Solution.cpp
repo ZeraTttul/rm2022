@@ -135,11 +135,7 @@ void Solution :: selectRightContours(vector<vector<Point>> &contours, vector<vec
         RotatedRect rec = minAreaRect(contours[i]); //最小外接矩阵拟合
         //采用最小外接矩阵拟合比椭圆拟合效果要好，因为有的装甲板两条灯条亮度不一样，用椭圆拟合出来的矩形亮的比暗的大很多
 
-<<<<<<< HEAD
         // cout << "rec_angle " << rec.angle << endl;
-=======
-        cout << "rec_angle " << rec.angle << endl;
->>>>>>> c2435e3 (10.25)
         float angle = abs(rec.angle);
         if (angle > 45){
             angle = 90 - angle;
@@ -421,11 +417,7 @@ void Solution ::chooseNearest() {
         //判断是大装甲板还是小装甲板
         if (board_ratio < 4) {
             //小装甲板            
-<<<<<<< HEAD
             // cout<<"small "<<endl;
-=======
-            cout<<"small "<<endl;
->>>>>>> c2435e3 (10.25)
             xishu = (13.5 / boardw + 5.4 / boardh) / 2;
                 //世界坐标
             tmp = pnp.PNP(0);
@@ -433,11 +425,7 @@ void Solution ::chooseNearest() {
 
         } else {
             //大装甲板
-<<<<<<< HEAD
             // cout<<"big "<<endl;
-=======
-            cout<<"big "<<endl;
->>>>>>> c2435e3 (10.25)
             xishu = (23.5 / boardw + 5.4 / boardh) / 2;
             tmp = pnp.PNP(1);
             if(tmp > 10) final_distance = tmp;
