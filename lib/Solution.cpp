@@ -310,23 +310,22 @@ void Solution ::chooseNearest() {
         }
     }
 
-    if (hi != 0) {
-        //circle the center 
+    if (hi != 0) 
+    {
         cv::circle(binary,
                    Point((R[mark].center.x + RA[mark].center.x) / 2,
                    (R[mark].center.y + RA[mark].center.y) / 2),
                    15, cv::Scalar(0, 0, 255), 4);
 
-        double center_x = -1;
-        double center_y = -1;
-        center_x = (R[mark].center.x + RA[mark].center.x) / 2;
+        double center_x = (R[mark].center.x + RA[mark].center.x) / 2;
+        double center_y = (R[mark].center.y + RA[mark].center.y) / 2;
+        
         center_y = (R[mark].center.y + RA[mark].center.y) / 2;
 
         Point2f verticesR[4];
         R[mark].points(verticesR);
         Point2f verticesRA[4];
         RA[mark].points(verticesRA);
-        float x1, y1, x2, y2, x3, y3, x4, y4;
 
         if (abs(R[mark].angle) > 45) {
             x1 = (verticesR[2].x + verticesR[3].x) / 2;
@@ -351,27 +350,51 @@ void Solution ::chooseNearest() {
             x3 = (verticesRA[0].x + verticesRA[3].x) / 2;
             y3 = (verticesRA[0].y + verticesRA[3].y) / 2;
         }
-        // if(center_x < 0) cout << "1 "<<endl;
-        // cout << "center " << center_x << endl;
+    }
 
 #ifdef PREDICT
-        
-        Point predict_pt = k.kal((float)center_x,(float)center_y);
-        circle(binary, predict_pt, 3, Scalar(34, 255, 255), -1);
+        queue<Point2f> que;
+        float pointx, pointy;
+        if(hi == 0)    
+        {
+            cout << "1111111111111111111111111111 " <<endl;
+            if(!que.empty())
+            {
+                que.front().x = pointx;
+                que.front().y = pointy;
+                cv::circle(binary,
+                        Point(pointx, pointy),
+                        3, cv::Scalar(255, 0, 0), 4);
+                que.push(k.kal(pointx, pointy));
+                que.pop();
+            }
+        }
+        else
+        {
+            while(!que.empty()) que.pop();
+            Point2f predict_pt = k.kal((float)center_x,(float)center_y);
+            que.push(predict_pt);
+            circle(binary, predict_pt, 3, Scalar(34, 255, 255), -1);
+        }
+
+        if(que.size() > 4) que.pop();
+
 
 #endif
 
 #ifdef IMSHOW
-    //     vector<cv::Point2f> imagePoints;
-    //     imagePoints.push_back(Point2f(x1, y1));
-    //     imagePoints.push_back(Point2f(x2, y2));
-    //     imagePoints.push_back(Point2f(x3, y3));
-    //     imagePoints.push_back(Point2f(x4, y4));
+        // vector<cv::Point2f> imagePoints;
+        // imagePoints.push_back(Point2f(x1, y1));
+        // imagePoints.push_back(Point2f(x2, y2));
+        // imagePoints.push_back(Point2f(x3, y3));
+        // imagePoints.push_back(Point2f(x4, y4));
 
     //    for (int n = 0; n < imagePoints.size(); n++) {
     //        circle(binary, imagePoints[n], 3, Scalar(255, 0, 0), -1, 8);
     //     }
 #endif
+    if(hi != 0)
+    {
         float boardw_up = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
         float boardw_down = sqrt((x3 - x4) * (x3 - x4) + (y3 - y4) * (y3 - y4));
         float boardw = (boardw_up + boardw_down) / 2;
@@ -394,7 +417,7 @@ void Solution ::chooseNearest() {
         //判断是大装甲板还是小装甲板
         if (board_ratio < 4) {
             //小装甲板            
-            // std::cout <<"small "<<endl;
+            // cout<<"small "<<endl;
             xishu = (13.5 / boardw + 5.4 / boardh) / 2;
                 //世界坐标
             tmp = pnp.PNP(0);
@@ -402,7 +425,7 @@ void Solution ::chooseNearest() {
 
         } else {
             //大装甲板
-            // std::cout <<"big "<<endl;
+            // cout<<"big "<<endl;
             xishu = (23.5 / boardw + 5.4 / boardh) / 2;
             tmp = pnp.PNP(1);
             if(tmp > 10) final_distance = tmp;

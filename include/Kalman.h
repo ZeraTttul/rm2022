@@ -26,6 +26,6 @@ public:
     Mat prediction;
 public:
 void init(KalmanFilter KF);
-Point kal(float x,float y);
+Point2f kal(float x,float y);
 };
 #endif
