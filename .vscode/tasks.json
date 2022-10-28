@@ -8,7 +8,7 @@
         "-std=c++11", 
         "${workspaceFolder}\\lib\\*.cpp", 
         "-o", 
-        "${fileBasenameNoExtension}.o", 
+        "${workspaceFolder}/obj/${fileBasenameNoExtension}.o", 
         "-I", "F:\\Opencv\\opencv-4.5.4\\build\\include",
         "-I", "F:\\Opencv\\opencv-4.5.4\\build\\include\\opencv2",
         "-L", "F:\\Opencv\\opencv-4.5.4\\build\\x64\\MinGW\\lib",
