@@ -1,4 +1,4 @@
-./.vscode/
-Video
-Picture
-obj
+.vscode/*
+Video/*
+Picture/*
+obj/*
