@@ -359,12 +359,6 @@ void Solution ::chooseNearest() {
         float pointx, pointy;
         if(hi == 0)    
         {
-            // cout << "1111111111111111111111111111 " <<endl;
-            // while(!que.empty())
-            // {
-            //     cout << "que.front = " << que.front();
-            //     que.pop();
-            // }
             if(!que.empty())
             {
                 pointx = que.front().x;
