@@ -5,7 +5,7 @@
           "includePath": [
               "${workspaceFolder}/**",
               "D:\\OpenCV\\opencv\\build\\include",
-              "D:\\OpenCV\\opencv\\build\\include\\opencv2"                
+              "D:\\OpenCV\\opencv\\build\\include\\opencv2"                 
           ],
           "defines": [],
           "compilerPath": "D:/MinGW/bin/gcc.exe",
@@ -16,3 +16,4 @@
   ],
   "version": 4
 }
+//

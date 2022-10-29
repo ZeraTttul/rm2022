@@ -20,7 +20,7 @@ void kalman :: init(KalmanFilter KF) {
 
 Point2f kalman::kal(float x,float y)
 {
-    Point2f center;   
+    Point2f center;
     prediction = KF.predict();
     measurement.at<float>(0) = x;
 	measurement.at<float>(1) = y;		
